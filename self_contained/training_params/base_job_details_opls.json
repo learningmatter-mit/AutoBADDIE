@@ -43,5 +43,6 @@
  "calc_method": ["dft_wb97xd3_def2tzvp", "gfn2-xtb"],
  "geom_method": ["dft_wb97xd3_def2tzvp", "gfn2-xtb", "nn_dynamics_dft_d3_gga_bp86"], 
  "config": ["dft_engrad_orca"],
- "train_autopath": "/home/pleon/projects/AuTopologyPipeline_detached/train" 
+ "train_autopath": "/home/pleon/projects/AutoBADDIE/train",
+ "training_data_path": "/home/pleon/projects/AutoBADDIE/self_contained/training_data/240830_AuTo_detach_test_from_220928/08302024_train"
 }

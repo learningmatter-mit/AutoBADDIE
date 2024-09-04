@@ -372,7 +372,7 @@ def create_train_and_val_df_file(
     for species_id in species_ids:
         print("newsmiles:", df[df.species_id == species_id].smiles.to_list()[0])
         smiles = df[df.species_id == species_id].smiles.to_list()[0]
-        # use the rdkit default adjmat and atom order'O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]'
+        # use the rdkit default adjmat and atom order
         rdkit_mol = Chem.MolFromSmiles(smiles)
         rdkit_mol = Chem.AddHs(rdkit_mol)
         adjmat = Chem.GetAdjacencyMatrix(rdkit_mol).tolist()

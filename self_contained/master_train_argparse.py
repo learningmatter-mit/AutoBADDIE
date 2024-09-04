@@ -32,6 +32,7 @@ parser.add_argument("--other_cond_for_dih", type=str, action="store", nargs="?")
 parser.add_argument("--dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--other_dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--self_contained_base", type=str, action="store", nargs="?")
+parser.add_argument("--training_path", type=str, action="store", nargs="?")
 args = parser.parse_args()
 
 train_flag = args.train_flag
@@ -97,9 +98,7 @@ dataset, dataset_val, dataset_test = (
     dataset_test.to(device),
 )
 
-df = pd.read_csv(
-    "/home/pleon/projects/repos/ForceFieldNet/training_data/240830_AuTo_detach_test_from_220928/08302024_train/file_contents.csv"
-)
+df = pd.read_csv(job_details.training_data_path + "/file_contents.csv")
 
 for i, cur_dataset in enumerate(single_solv_dataset):
     single_solv_dataset[i] = cur_dataset.to(device)

@@ -191,9 +191,7 @@ print("creating train dataset")
 device = torch.device("cpu")
 
 # add ensemble_to_smiles
-df = pd.read_csv(
-    "/home/pleon/projects/repos/ForceFieldNet/training_data/240830_AuTo_detach_test_from_220928/08302024_train/file_contents.csv"
-)
+df = pd.read_csv(job_details.training_data_path + "/file_contents.csv")
 ensemble_to_smiles = [
     df[df.species_id == species_id].smiles.to_list()[0]
     for species_id in df.species_id.unique()
@@ -215,7 +213,7 @@ if not os.path.exists(
 ):
     # if True:
     print(job_details.template_smiles)
-    path = "./training_data/240830_AuTo_detach_test_from_220928/08302024_train"
+    path = job_details.training_data_path
     dataset, dataset_val, dataset_test, template_dataset, job_details = (
         train.create_train_and_val_df_file(
             path, job_details, condition, template_dataset, charge=True
