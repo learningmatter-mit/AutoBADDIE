@@ -664,7 +664,7 @@ class ForceField(torch.nn.Module):
             c[i] = c[i].unique(return_counts=True)[1]
         c = torch.cat(c).tolist()
 
-        # Charge loss between current AuTopology atom charges and avg DFT atom charges
+        # Charge loss between current AutoBADDIE atom charges and avg DFT atom charges
         # this will be the same thing every molecule...
         Q = PARAM["charge"][types].squeeze(1)
         both_Q = torch.cat([Q_target, Q], dim=1)

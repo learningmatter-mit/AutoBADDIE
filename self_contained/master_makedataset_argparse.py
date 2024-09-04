@@ -20,7 +20,7 @@ def none_or_str(value):
     return value
 
 
-parser = argparse.ArgumentParser(description="Parse for AuTopology training")
+parser = argparse.ArgumentParser(description="Parse for AutoBADDIE training")
 parser.add_argument("--job_name", type=str, action="store", nargs="?")
 parser.add_argument("--condition", type=str, action="store", nargs="?")
 parser.add_argument("--date", type=str, action="store", nargs="?")

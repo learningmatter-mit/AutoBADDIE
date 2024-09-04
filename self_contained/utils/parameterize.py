@@ -33,7 +33,7 @@ import self_contained.utils.train as train
 def get_dataset_from_xyz(
     param_name_xyz, job_details, condition, template_dataset, device, return_rdkit=False
 ):
-    # Uses rdkit molecules to get a representation of the desired xyz file into an AuTopology dataset.
+    # Uses rdkit molecules to get a representation of the desired xyz file into an AutoBADDIE dataset.
     # input - param_name = name of xyz file containing the coordinates of atoms in the molecule to be parameterized
     # job_details = Munch collection of run options
     # output - dataset - materialbuilder dataset object that contains only one molecule in it - from the xyz file

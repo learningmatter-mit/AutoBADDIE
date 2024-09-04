@@ -14,7 +14,7 @@ import self_contained.utils.train as train
 import self_contained.utils.parameterize as parameterize
 import self_contained.utils.param_compare_utils as param_compare_utils
 
-parser = argparse.ArgumentParser(description="Parse for AuTopology training")
+parser = argparse.ArgumentParser(description="Parse for AutoBADDIE training")
 parser.add_argument("--job_name", type=str, action="store", nargs="?")
 parser.add_argument("--condition", type=str, action="store", nargs="?")
 parser.add_argument("--date", type=str, action="store", nargs="?")

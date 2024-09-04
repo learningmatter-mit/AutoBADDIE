@@ -1169,7 +1169,7 @@ def plot_multipole_parity(
         ax.set_title("Dipole Moment (e-Å), MAE={:0.5f}".format(L_MAE), fontsize=40)
     elif job_details.mode == "test":
         ax.set_title("Dipole Moment(e-Å), MAE={:0.5f}".format(L_MAE), fontsize=40)
-    ax.set_xlabel("AuTopology", fontsize=40)
+    ax.set_xlabel("AutoBADDIE", fontsize=40)
     ax.set_ylabel("DFT", fontsize=40)
     lim = torch.tensor(x + y).abs().max().item()
     ax.plot((-lim, lim), (-lim, lim), ls="--", c=".3", lw=3)
@@ -1267,7 +1267,7 @@ def plot_force_parity(
         )
     elif job_details.mode == "test":
         ax.set_title("Force (kcal/mol-Å), MAE={:0.5f}".format(L_MAE[-1]), fontsize=40)
-    ax.set_xlabel("AuTopology", fontsize=40)
+    ax.set_xlabel("AutoBADDIE", fontsize=40)
     ax.set_ylabel("DFT", fontsize=40)
     lim = torch.tensor(x + y).abs().max().item()
     # lim = 200
@@ -1374,7 +1374,7 @@ def plot_energy_parity(
         ax.set_title("Energy (kcal/mol), MAE={:0.5f}".format(L_MAE), fontsize=40)
     elif job_details.mode == "test":
         ax.set_title("Energy (kcal/mol-atom), MAE={:0.5f}".format(L_MAE), fontsize=40)
-    ax.set_xlabel("AuTopology", fontsize=40)
+    ax.set_xlabel("AutoBADDIE", fontsize=40)
     ax.set_ylabel("DFT", fontsize=40)
     lim = torch.tensor(x + y).abs().max().item()
     ax.plot((-lim, lim), (-lim, lim), ls="--", c=".3", lw=3)

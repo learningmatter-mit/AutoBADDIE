@@ -247,7 +247,7 @@ class GraphDataset:
         self.container_batch._transform_data(join=True)
 
         if Qs != None:
-            # set target charge to the average of DFT charges for each AuTopology atom type
+            # set target charge to the average of DFT charges for each AutoBADDIE atom type
             qs = self.container_batch._data["node"]["q"].squeeze(1)
             types = np.array(
                 self.container_batch._data["node"]["type"].squeeze(1).tolist()

@@ -13,7 +13,7 @@ from self_contained.forcefields.Forcefield_pcff_linHar_nocrossnoanhar import (
     MAX_ANGLE_DIS,
 )
 
-# TRAIN_BASE = '/home/gridsan/pleon/proj/repos/AuTopologyPipeline/train'
+# TRAIN_BASE = '/home/gridsan/pleon/proj/repos/AutoBADDIEPipeline/train'
 FS_TO_NS = 1 / 1e6
 
 
@@ -117,7 +117,7 @@ def plot_equilibrium_distances_and_stiffnesses_parity(
         if curkey == "Charge":
             un_auto = np.array(list(coeffs[curkey].values()))
             un = np.array(list(bench_coeffs[curkey].values()))
-            print("autopology charges:", un_auto)
+            print("AutoBADDIE charges:", un_auto)
             print("literature charges:", un)
         elif curkey.endswith("K"):
             curkey = curkey[:-1]
@@ -170,7 +170,7 @@ def plot_equilibrium_distances_and_stiffnesses_parity(
                         alpha=0.5,
                     )
             ax[plt_counter // 3, plt_counter % 3].grid()
-            ax[plt_counter // 3, plt_counter % 3].set_xlabel("AuTopology parameter")
+            ax[plt_counter // 3, plt_counter % 3].set_xlabel("AutoBADDIE parameter")
             ax[plt_counter // 3, plt_counter % 3].set_ylabel("Literature parameter")
             ax[plt_counter // 3, plt_counter % 3].set_title(f"{curkey} stiffness")
             ax[plt_counter // 3, plt_counter % 3].legend()
@@ -203,7 +203,7 @@ def plot_equilibrium_distances_and_stiffnesses_parity(
         ax[plt_counter // 3, plt_counter % 3].scatter(un_auto, un, alpha=0.5)
 
         ax[plt_counter // 3, plt_counter % 3].grid()
-        ax[plt_counter // 3, plt_counter % 3].set_xlabel("AuTopology parameter")
+        ax[plt_counter // 3, plt_counter % 3].set_xlabel("AutoBADDIE parameter")
         ax[plt_counter // 3, plt_counter % 3].set_ylabel("Literature parameter")
         if curkey == "Charge":
             ax[plt_counter // 3, plt_counter % 3].set_title(
@@ -295,7 +295,7 @@ def plot_crossterms_parity(job_details, condition, coeffs, bench_coeffs):
                     )
         else:
             ax[plt_counter // 3, plt_counter % 3].scatter(un_auto, un, alpha=0.5)
-        ax[plt_counter // 3, plt_counter % 3].set_xlabel("AuTopology parameter")
+        ax[plt_counter // 3, plt_counter % 3].set_xlabel("AutoBADDIE parameter")
         ax[plt_counter // 3, plt_counter % 3].set_ylabel("Literature parameter")
         ax[plt_counter // 3, plt_counter % 3].set_title(f"{curkey} stiffness")
         ax[plt_counter // 3, plt_counter % 3].grid()
