@@ -1,0 +1,47 @@
+{"description": "Getting gradient error on E_ba, but currently training with energy hyp = 0, so not a problem",
+ "job_name": 
+ "date":
+ "atom_hyp": 100,
+ "mol_hyp": 100,
+ "energy_hyp": 
+ "ion_sc_hyp": 1.0,
+ "param_sc_hyp": 0.7,
+ "reg_hyp":
+ "top_reg_hyp":
+ "species_id": [5388484, 5387528],
+ "dip_hyp": null,
+ "creg_hyp": 0, 
+ "dropout_rate": 0, 
+
+ "learning_rate": 0.01, 
+ "num_epoch": 200, 
+ "geoms_per_species": 120,
+ "batch_size": 30, 
+ "top_perturb_hyp": 0.05, 
+ "dihed_cutoff": 1e-3, 
+
+ "template_smiles": "COCCOCCOCCOCCOC.O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]", 
+ "anion_smiles": ["O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F"], 
+ "cation_smiles": ["[Li+]"], 
+ "to_param_list": [["COCCOCCOCCOCCOC", "glyme4"], ["COCCOCCOCCOCCOC.O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]", "glyme4litfsi"], 
+                   ["O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F", "tfsi"], ["[Li+]", "li"]],
+ "geom_temp": null,
+ "geom_lj_cluster": null, 
+ "geom_reactivecluster": null, 
+ "geomset_name": null, 
+ "generation": null, 
+ "outlier_cut": 65,
+ "training_ff": null,
+ "training_temp": null,
+ "starting_id": null,
+ "other_condition_for_dih": null,
+
+ "device": "cuda:0", 
+ "verbose": "True", 
+ "train_val_test_split": [0.60, 0.20, 0.20], 
+ "terms": ["bond", "angle", "dihedral", "improper", "pair"],
+ "calc_method": ["dft_wb97xd3_def2tzvp", "gfn2-xtb"],
+ "geom_method": ["dft_wb97xd3_def2tzvp", "gfn2-xtb", "nn_dynamics_dft_d3_gga_bp86"], 
+ "config": ["dft_engrad_orca"],
+ "train_autopath": "/home/pleon/projects/AuTopologyPipeline_detached/train" 
+}
