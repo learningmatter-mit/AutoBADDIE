@@ -1,19 +1,12 @@
 import sys, subprocess, os, importlib, shutil, socket, copy
 
-# import random, itertools, logging, argparse
-# import materialbuilder
 from materialbuilder import (
-    # graphbuilder, matbuilder, potentials, topologies,
-    # terms, typers, output, transformations,
-    # utils, units, plotting, inout, dbinterface, dbsettings)
     graphbuilder,
     matbuilder,
     output,
     utils,
 )
 
-# from materialbuilder.dbsettings import Geom, Group, Species, MolSet, Calc, Jacobian, Job, Count
-from materialbuilder.dbsettings import Geom
 import torch
 import numpy as np
 import pandas as pd
