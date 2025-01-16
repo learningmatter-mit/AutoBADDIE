@@ -1,5 +1,4 @@
 import torch
-import materialbuilder
 from materialbuilder import topcalc
 import numpy as np
 

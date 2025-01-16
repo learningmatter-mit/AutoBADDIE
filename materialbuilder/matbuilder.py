@@ -1,10 +1,6 @@
 import torch
-import materialbuilder
+from materialbuilder.graphbuilder import Graph
 
-# from materialbuilder import utils
-from materialbuilder.graphbuilder import Graph, GraphBatch
-
-# from mendeleev import element as Element
 from rdkit.Chem import AllChem as Chem
 
 # these dictionaries are from mendeleev:

@@ -1,7 +1,5 @@
-import torch, copy, random
-import materialbuilder
+import torch, random
 from materialbuilder.base import GraphBase
-from materialbuilder.errors import TemplateError
 from collections import OrderedDict
 import numpy as np
 

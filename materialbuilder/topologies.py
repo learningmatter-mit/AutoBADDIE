@@ -1,10 +1,7 @@
 import torch, itertools, copy
 from scipy.linalg import block_diag
 import numpy as np
-from collections import OrderedDict
-import materialbuilder
 from materialbuilder import topcalc
-import ipdb
 
 
 def index_of(inp, source, max_index):
