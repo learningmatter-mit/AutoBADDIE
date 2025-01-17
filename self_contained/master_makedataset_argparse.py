@@ -36,6 +36,8 @@ parser.add_argument("--dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--other_dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--self_contained_base", type=str, action="store", nargs="?")
 parser.add_argument("--provided_charges", type=float, action="store", nargs="+")
+parser.add_argument("--training_data_path", type=str, action="store", nargs="?")
+parser.add_argument("--train_autopath", type=str, action="store", nargs="?")
 args = parser.parse_args()
 
 train_flag = args.train_flag
@@ -77,6 +79,8 @@ if train_flag:
         f"{SELF_CONTAINED_BASE}/training_params/cur_job_details_pretrain.json", "r"
     ) as jsonFile:
         job_details = json.load(jsonFile)
+    job_details["training_data_path"] = args.training_data_path
+    job_details["train_autopath"] = args.train_autopath
     job_details["self_contained_base"] = SELF_CONTAINED_BASE
     job_details["generation"] = args.gen
     job_details["glymecond"] = args.glymecond
@@ -126,7 +130,7 @@ job_details.TEMPLATEDIR = os.path.join(
     os.path.abspath("."), job_details.job_name, "template"
 )
 path = os.path.join(job_details.TEMPLATEDIR, "template.py")
-template_dataset = torch.load(path)
+template_dataset = torch.load(path, weights_only=False)
 if job_details.anion_smiles:
     single_anion_dataset, single_cation_dataset, single_solv_dataset = [], [], []
     print("beginning to get the single mol datasets")
@@ -183,8 +187,8 @@ pickle.dump(single_cation_dataset, open(dump_path, "wb"))
 
 
 print("creating train dataset")
-# device = torch.device(job_details.device)
-device = torch.device("cpu")
+device = torch.device(job_details.device)
+# device = torch.device("cpu")
 
 # add ensemble_to_smiles
 df = pd.read_csv(job_details.training_data_path + "/file_contents.csv")
@@ -220,4 +224,8 @@ else:
         open(f"{dataset_path_base}/{condition}_{job_details.mode}_dataset.pkl", "rb")
     )
 
+print(
+    "number of geometries in training dataset:",
+    dataset._data["prop"]["geom_id"].shape[0],
+)
 print("done making datasets!")

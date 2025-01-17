@@ -14,16 +14,16 @@ import self_contained.utils.training_utils as training_utils
 import self_contained.forcefields.Forcefield as Forcefield
 
 import self_contained.utils.param_compare_utils as param_compare_utils
-from self_contained.utils.constants import ELEMENT_TO_NUM
+from self_contained.utils.constants import ELEMENT_TO_Z
 
 import json
-from self_contained.forcefields.Forcefield_pcff_linHar_nocrossnoanhar import (
+from self_contained.utils.ADDITIONAL_HYPERPARAMS import (
     MIN_BOND_DIS,
     MAX_BOND_DIS,
     MIN_ANGLE_DIS,
     MAX_ANGLE_DIS,
 )
-from materialbuilder.matbuilder import Z_TO_SYMBOLS
+from self_contained.utils.constants import Z_TO_ELEMENT
 
 HARTREE_TO_KCALMOL = 627.50947415
 AU_TO_ANGSTROM = 1 / 0.52917721090380
@@ -369,7 +369,10 @@ def create_train_and_val_df_file(
     df = pd.read_csv(f"{path}/file_contents.csv")
     species_ids = df.species_id.unique()
     for species_id in species_ids:
-        print("newsmiles:", df[df.species_id == species_id].smiles.to_list()[0])
+        print(
+            "starting to import training data for",
+            df[df.species_id == species_id].smiles.to_list()[0],
+        )
         smiles = df[df.species_id == species_id].smiles.to_list()[0]
         # use the rdkit default adjmat and atom order
         rdkit_mol = Chem.MolFromSmiles(smiles)
@@ -387,13 +390,13 @@ def create_train_and_val_df_file(
             lines = f.readlines()
             z = []
             for curline in lines[2:]:
-                z.append(ELEMENT_TO_NUM[curline[:2].strip()])
+                z.append(ELEMENT_TO_Z[curline[:2].strip()])
 
         if z_rdkit != z:
             print("uh oh!")
             adjmat, curN, z_rdkit = reorder_cluster_atoms(rdkit_mol, z)
             print(
-                "REORDERING: The training data files must be in the same order as RDKIT, or the adjacency matrix must be provided"
+                f"REORDERING {smiles}: The training data files must be in the same order as RDKIT, or the adjacency matrix must be provided"
             )
 
         reference_adjmat[species_id] = adjmat
@@ -974,7 +977,7 @@ def plot_charge_evolution(
                     ax.plot(
                         np.arange(num_updates) / num_batches,
                         learned_charges[:, cur_type],
-                        label=f"{Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
+                        label=f"{Z_TO_ELEMENT[ion_z[ion_types == cur_type][0].item()]}",
                     )
                 ax.set_xlabel("Epoch")
                 ax.set_ylabel("Charge")
@@ -1018,7 +1021,7 @@ def plot_charge_evolution(
                     ax.plot(
                         PARAMcharge[cur_type].cpu() * update_ones,
                         # label=f'anion {Element(ani_z[ani_types==cur_type][0].item()).symbol}')
-                        label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
+                        label=f"anion {Z_TO_ELEMENT[ion_z[ion_types == cur_type][0].item()]}",
                     )
                 # repeat with cation
                 total_cat = PARAMcharge[cat_types].sum()
@@ -1028,7 +1031,7 @@ def plot_charge_evolution(
                     for cur_type in ani_types.unique().tolist():
                         ax.plot(
                             PARAMcharge[cur_type].cpu() * update_ones,
-                            label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
+                            label=f"anion {Z_TO_ELEMENT[ion_z[ion_types == cur_type][0].item()]}",
                         )
                 ax.set_xlabel(
                     "Parameter update (1 epoch={} updates)".format(num_updates)
@@ -1082,7 +1085,7 @@ def plot_charge_evolution(
                 ax.plot(
                     np.arange(num_updates) / num_batches,
                     learned_charges[:, cur_type].cpu(),
-                    label=f"{Z_TO_SYMBOLS[all_z[all_types == cur_type][0].item()]}",
+                    label=f"{Z_TO_ELEMENT[all_z[all_types == cur_type][0].item()]}",
                 )
         ax.set_xlabel("Epoch")
         ax.set_ylabel("Charge")
@@ -1119,7 +1122,7 @@ def plot_charge_evolution(
         for cur_type in solv_types.unique().tolist():
             ax.plot(
                 PARAMcharge[cur_type].cpu() * update_ones,
-                label=f"{Z_TO_SYMBOLS[all_z[all_types == cur_type][0].item()]}{cur_type}",
+                label=f"{Z_TO_ELEMENT[all_z[all_types == cur_type][0].item()]}{cur_type}",
             )
         ax.set_xlabel("Parameter update (1 epoch={} updates)".format(num_updates))
         ax.set_ylabel("Charge")

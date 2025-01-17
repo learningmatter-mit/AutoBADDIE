@@ -2,7 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
-from self_contained.forcefields.Forcefield_pcff_linHar_nocrossnoanhar import (
+from self_contained.utils.ADDITIONAL_HYPERPARAMS import (
     MIN_BOND_DIS,
     MAX_BOND_DIS,
     MIN_ANGLE_DIS,
@@ -325,21 +325,7 @@ def plot_param_evolution(job_details, condition, forcefield):
             / np.pi
         )
     else:
-        if "opls" in job_details.job_name:
-            K2 = np.array(forcefield.learned_params["k2"]).transpose(1, 0) * 20
-            KB2 = (
-                np.array(forcefield.learned_params["k_bond"]).transpose(1, 0) * 10
-            ) ** 2
-            B0 = np.array(forcefield.learned_params["b0"]).transpose(1, 0) ** 2
-            KA2 = (
-                np.array(forcefield.learned_params["k_angle"]).transpose(1, 0) * 10
-            ) ** 2
-            THETA0 = (
-                (np.array(forcefield.learned_params["theta0"]) ** 2).transpose(1, 0)
-                * 180
-                / np.pi
-            )
-        else:
+        if "class2" in job_details.job_name:
             K2 = np.array(forcefield.learned_params["k2"]).transpose(1, 0)
             KB2 = (
                 np.array(forcefield.learned_params["k_b2"]).transpose(1, 0) * 10
@@ -348,6 +334,20 @@ def plot_param_evolution(job_details, condition, forcefield):
             KA2 = (
                 np.array(forcefield.learned_params["k_a2"]).transpose(1, 0) * 10
             ).pow(2)
+            THETA0 = (
+                (np.array(forcefield.learned_params["theta0"]) ** 2).transpose(1, 0)
+                * 180
+                / np.pi
+            )
+        else:
+            K2 = np.array(forcefield.learned_params["k2"]).transpose(1, 0) * 20
+            KB2 = (
+                np.array(forcefield.learned_params["k_bond"]).transpose(1, 0) * 10
+            ) ** 2
+            B0 = np.array(forcefield.learned_params["b0"]).transpose(1, 0) ** 2
+            KA2 = (
+                np.array(forcefield.learned_params["k_angle"]).transpose(1, 0) * 10
+            ) ** 2
             THETA0 = (
                 (np.array(forcefield.learned_params["theta0"]) ** 2).transpose(1, 0)
                 * 180
