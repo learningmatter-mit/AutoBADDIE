@@ -980,9 +980,7 @@ def plot_charge_evolution(
                         label=f"{Z_TO_ELEMENT[ion_z[ion_types == cur_type][0].item()]}",
                     )
                 ax.set_xlabel("Epoch")
-                ax.set_ylabel("Charge")
-                ax.set_yticks(np.arange(-1.5, 1.01, 0.25))
-                ax.set_ylim(-1.5, 1.0)
+                ax.set_ylabel("Charge [e]")
                 plt.legend()
                 plt.grid()
                 plt.tight_layout()
@@ -1036,7 +1034,7 @@ def plot_charge_evolution(
                 ax.set_xlabel(
                     "Parameter update (1 epoch={} updates)".format(num_updates)
                 )
-                ax.set_ylabel("Charge")
+                ax.set_ylabel("Charge [e]")
                 plt.legend()
                 plt.tight_layout()
                 plt.grid()
@@ -1088,7 +1086,7 @@ def plot_charge_evolution(
                     label=f"{Z_TO_ELEMENT[all_z[all_types == cur_type][0].item()]}",
                 )
         ax.set_xlabel("Epoch")
-        ax.set_ylabel("Charge")
+        ax.set_ylabel("Charge [e]")
         plt.legend()
         plt.grid()
         plt.tight_layout()
@@ -1125,7 +1123,7 @@ def plot_charge_evolution(
                 label=f"{Z_TO_ELEMENT[all_z[all_types == cur_type][0].item()]}{cur_type}",
             )
         ax.set_xlabel("Parameter update (1 epoch={} updates)".format(num_updates))
-        ax.set_ylabel("Charge")
+        ax.set_ylabel("Charge [e]")
         plt.legend()
         plt.grid()
         plt.tight_layout()
