@@ -1,7 +1,5 @@
-import torch, itertools, copy
-from scipy.linalg import block_diag
+import torch
 import numpy as np
-from collections import OrderedDict
 
 
 # this epsilon will be used by torch.clamp is added because the gradient of torch.acos(1) or torch.acos(-1) will be inf and mess up the training!!

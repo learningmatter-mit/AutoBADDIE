@@ -4,7 +4,6 @@ from materialbuilder import (
     transformations,
     matbuilder,
     graphbuilder,
-    typers,
 )
 import numpy as np
 import pandas as pd
@@ -274,8 +273,6 @@ def get_parameterization_dataset(job_details, datasets, geometry):
             dataset.AddTransformation(transformation)
     dataset.DefineBaseNodeTypes(job_details.base_node_type)
     dataset.DefineNodeTypes(job_details.node_type)
-    if "compass" in job_details.custom_types:
-        dataset.AddTyper(typers.CompassTyper())
     if "bond" in job_details.terms:
         dataset.AddTopology(topologies.BondTopology())
     if "angle" in job_details.terms:
