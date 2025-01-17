@@ -1,17 +1,13 @@
-import sys, subprocess, os, importlib, shutil, socket, copy
-import random, itertools, logging, argparse
+import os
+import argparse
 import torch
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from munch import Munch
 import _pickle as pickle
 import pandas as pd
 import json
 import argparse
 import self_contained.utils.train as train
 import self_contained.utils.parameterize as parameterize
-import self_contained.utils.dihedral_training_utils as dihedral_training_utils
 
 
 def none_or_str(value):
@@ -105,7 +101,7 @@ if train_flag:
         job_details["other_dih_label"] = args.other_dih_label
 else:
     with open(
-        f'{job_details["self_contained_base"]}/../train/{job_details["job_name"]}/{job_details["condition"]}/job_details.json',
+        f"{job_details['self_contained_base']}/../train/{job_details['job_name']}/{job_details['condition']}/job_details.json",
         "r",
     ) as jsonFile:
         job_details = json.load(jsonFile)

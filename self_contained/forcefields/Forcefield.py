@@ -4,7 +4,6 @@ import torch
 import numpy as np
 import pandas as pd
 import pandas as pd
-from rdkit.Chem import AllChem as Chem
 
 
 class ForceField(torch.nn.Module):

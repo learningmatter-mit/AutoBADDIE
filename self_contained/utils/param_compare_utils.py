@@ -1,8 +1,4 @@
-import sys
-import pickle
-import time
 import os
-import torch
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
@@ -66,9 +62,9 @@ def get_coefficients_from_datafile(
     coeffs = {}
     WORKDIR = f"{job_details.train_autopath}/{job_details.job_name}/{condition}"
     if equil_flag:
-        dataname = f'{base_concentration}_0_i{str(job_details.param_sc_hyp).split(".")[-1]}.data'
+        dataname = f"{base_concentration}_0_i{str(job_details.param_sc_hyp).split('.')[-1]}.data"
     else:
-        dataname = f'{condition}_{base_concentration}_SCALED{str(job_details.param_sc_hyp).split(".")[-1]}.data'
+        dataname = f"{condition}_{base_concentration}_SCALED{str(job_details.param_sc_hyp).split('.')[-1]}.data"
     print("loading data for", dataname)
     with open(f"{WORKDIR}/{dataname}", "r") as datafile:
         lines = datafile.read().split("\n")
@@ -154,7 +150,7 @@ def plot_equilibrium_distances_and_stiffnesses_parity(
                         ax[plt_counter // 3, plt_counter % 3].scatter(
                             un_auto[:, curinx],
                             un[:, curinx],
-                            label=f"{curinx+2}",
+                            label=f"{curinx + 2}",
                             alpha=0.5,
                         )
                     except:
@@ -166,7 +162,7 @@ def plot_equilibrium_distances_and_stiffnesses_parity(
                     ax[plt_counter // 3, plt_counter % 3].scatter(
                         un_auto[:, curinx],
                         un[:, curinx],
-                        label=f"{curinx+1}",
+                        label=f"{curinx + 1}",
                         alpha=0.5,
                     )
             ax[plt_counter // 3, plt_counter % 3].grid()
@@ -282,7 +278,7 @@ def plot_crossterms_parity(job_details, condition, coeffs, bench_coeffs):
                     ax[plt_counter // 3, plt_counter % 3].scatter(
                         un_auto[:, curinx],
                         un[:, curinx],
-                        label=f"{curinx+2}",
+                        label=f"{curinx + 2}",
                         alpha=0.5,
                     )
             else:
@@ -290,7 +286,7 @@ def plot_crossterms_parity(job_details, condition, coeffs, bench_coeffs):
                     ax[plt_counter // 3, plt_counter % 3].scatter(
                         un_auto[:, curinx],
                         un[:, curinx],
-                        label=f"{curinx+1}",
+                        label=f"{curinx + 1}",
                         alpha=0.5,
                     )
         else:

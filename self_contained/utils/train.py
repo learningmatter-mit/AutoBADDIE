@@ -10,7 +10,6 @@ import _pickle as pickle
 import pandas as pd
 from rdkit.Chem import AllChem as Chem
 from sklearn.model_selection import train_test_split
-import scipy.stats
 import self_contained.utils.training_utils as training_utils
 import self_contained.forcefields.Forcefield as Forcefield
 
@@ -975,7 +974,7 @@ def plot_charge_evolution(
                     ax.plot(
                         np.arange(num_updates) / num_batches,
                         learned_charges[:, cur_type],
-                        label=f"{Z_TO_SYMBOLS[ion_z[ion_types==cur_type][0].item()]}",
+                        label=f"{Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
                     )
                 ax.set_xlabel("Epoch")
                 ax.set_ylabel("Charge")
@@ -1019,7 +1018,7 @@ def plot_charge_evolution(
                     ax.plot(
                         PARAMcharge[cur_type].cpu() * update_ones,
                         # label=f'anion {Element(ani_z[ani_types==cur_type][0].item()).symbol}')
-                        label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types==cur_type][0].item()]}",
+                        label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
                     )
                 # repeat with cation
                 total_cat = PARAMcharge[cat_types].sum()
@@ -1029,7 +1028,7 @@ def plot_charge_evolution(
                     for cur_type in ani_types.unique().tolist():
                         ax.plot(
                             PARAMcharge[cur_type].cpu() * update_ones,
-                            label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types==cur_type][0].item()]}",
+                            label=f"anion {Z_TO_SYMBOLS[ion_z[ion_types == cur_type][0].item()]}",
                         )
                 ax.set_xlabel(
                     "Parameter update (1 epoch={} updates)".format(num_updates)
@@ -1083,7 +1082,7 @@ def plot_charge_evolution(
                 ax.plot(
                     np.arange(num_updates) / num_batches,
                     learned_charges[:, cur_type].cpu(),
-                    label=f"{Z_TO_SYMBOLS[all_z[all_types==cur_type][0].item()]}",
+                    label=f"{Z_TO_SYMBOLS[all_z[all_types == cur_type][0].item()]}",
                 )
         ax.set_xlabel("Epoch")
         ax.set_ylabel("Charge")
@@ -1120,7 +1119,7 @@ def plot_charge_evolution(
         for cur_type in solv_types.unique().tolist():
             ax.plot(
                 PARAMcharge[cur_type].cpu() * update_ones,
-                label=f"{Z_TO_SYMBOLS[all_z[all_types==cur_type][0].item()]}{cur_type}",
+                label=f"{Z_TO_SYMBOLS[all_z[all_types == cur_type][0].item()]}{cur_type}",
             )
         ax.set_xlabel("Parameter update (1 epoch={} updates)".format(num_updates))
         ax.set_ylabel("Charge")
