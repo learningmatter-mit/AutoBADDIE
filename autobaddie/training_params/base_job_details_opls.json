@@ -13,7 +13,7 @@
  "dropout_rate": 0, 
 
  "learning_rate": 0.01, 
- "num_epoch": 200, 
+ "num_epoch": 5, 
  "geoms_per_species": 500,
  "batch_size": 30, 
  "top_perturb_hyp": 0.05, 
@@ -25,7 +25,7 @@
  "to_param_list": [["COCCOCCOCCOCCOC", "glyme4"], ["COCCOCCOCCOCCOC.O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]", "glyme4litfsi"], 
                    ["O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F", "tfsi"], ["[Li+]", "li"]],
 
- "device": "cuda:0", 
+ "device": "cpu", 
  "verbose": "True", 
  "train_val_test_split": [0.60, 0.20, 0.20], 
  "terms": ["bond", "angle", "dihedral", "improper", "pair"]
