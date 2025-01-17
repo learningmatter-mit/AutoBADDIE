@@ -10,20 +10,20 @@ import _pickle as pickle
 import pandas as pd
 from rdkit.Chem import AllChem as Chem
 from sklearn.model_selection import train_test_split
-import self_contained.utils.training_utils as training_utils
-import self_contained.forcefields.Forcefield as Forcefield
+import autobaddie.utils.training_utils as training_utils
+import autobaddie.forcefields.Forcefield as Forcefield
 
-import self_contained.utils.param_compare_utils as param_compare_utils
-from self_contained.utils.constants import ELEMENT_TO_Z
+import autobaddie.utils.param_compare_utils as param_compare_utils
+from autobaddie.utils.constants import ELEMENT_TO_Z
 
 import json
-from self_contained.utils.ADDITIONAL_HYPERPARAMS import (
+from autobaddie.utils.ADDITIONAL_HYPERPARAMS import (
     MIN_BOND_DIS,
     MAX_BOND_DIS,
     MIN_ANGLE_DIS,
     MAX_ANGLE_DIS,
 )
-from self_contained.utils.constants import Z_TO_ELEMENT
+from autobaddie.utils.constants import Z_TO_ELEMENT
 
 HARTREE_TO_KCALMOL = 627.50947415
 AU_TO_ANGSTROM = 1 / 0.52917721090380

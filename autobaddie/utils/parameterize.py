@@ -1,18 +1,18 @@
 import subprocess, os, copy
 
-from materialbuilder import (
+from autobaddie.materialbuilder import (
     graphbuilder,
     matbuilder,
     output,
     utils,
 )
+from autobaddie.materialbuilder.plotting import *
 
 import torch
 import numpy as np
 import _pickle as pickle
 from rdkit.Chem import AllChem as Chem
-from materialbuilder.plotting import *
-import self_contained.utils.train as train
+import autobaddie.utils.train as train
 
 
 def get_dataset_from_xyz(

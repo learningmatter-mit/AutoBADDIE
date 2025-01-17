@@ -6,8 +6,8 @@ import _pickle as pickle
 import pandas as pd
 import json
 import argparse
-import self_contained.utils.train as train
-import self_contained.utils.parameterize as parameterize
+import autobaddie.utils.train as train
+import autobaddie.utils.parameterize as parameterize
 
 
 def none_or_str(value):
@@ -34,14 +34,14 @@ parser.add_argument("--gen", type=none_or_str, action="store", nargs="?")
 parser.add_argument("--other_cond_for_dih", type=str, action="store", nargs="?")
 parser.add_argument("--dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--other_dih_label", type=str, action="store", nargs="?")
-parser.add_argument("--self_contained_base", type=str, action="store", nargs="?")
+parser.add_argument("--autobaddie_base", type=str, action="store", nargs="?")
 parser.add_argument("--provided_charges", type=float, action="store", nargs="+")
 parser.add_argument("--training_data_path", type=str, action="store", nargs="?")
 parser.add_argument("--train_autopath", type=str, action="store", nargs="?")
 args = parser.parse_args()
 
 train_flag = args.train_flag
-SELF_CONTAINED_BASE = args.self_contained_base
+AUTOBADDIE_BASE = args.autobaddie_base
 if not train_flag:
     job_name = args.job_name
     condition = args.condition
@@ -54,7 +54,7 @@ else:
     date = f"{args.date}_reg{str(args.dih_reg_hyp).split('.')[-1]}_topreg{args.top_reg_hyp}"
 if train_flag:
     with open(
-        f"{SELF_CONTAINED_BASE}/training_params/{args.param_json}.json", "r"
+        f"{AUTOBADDIE_BASE}/training_params/{args.param_json}.json", "r"
     ) as jsonFile:
         lines = jsonFile.read().split("\n")
         for line in lines:
@@ -72,16 +72,16 @@ if train_flag:
                 line += f" {args.provided_charges},"
             myarray.append(line)
     with open(
-        f"{SELF_CONTAINED_BASE}/training_params/cur_job_details_pretrain.json", "w"
+        f"{AUTOBADDIE_BASE}/training_params/cur_job_details_pretrain.json", "w"
     ) as jsonFile:
         jsonFile.write("\n".join(myarray))
     with open(
-        f"{SELF_CONTAINED_BASE}/training_params/cur_job_details_pretrain.json", "r"
+        f"{AUTOBADDIE_BASE}/training_params/cur_job_details_pretrain.json", "r"
     ) as jsonFile:
         job_details = json.load(jsonFile)
     job_details["training_data_path"] = args.training_data_path
     job_details["train_autopath"] = args.train_autopath
-    job_details["self_contained_base"] = SELF_CONTAINED_BASE
+    job_details["autobaddie_base"] = AUTOBADDIE_BASE
     job_details["generation"] = args.gen
     job_details["glymecond"] = args.glymecond
     job_details["tfsicond"] = args.tfsicond
@@ -105,7 +105,7 @@ if train_flag:
         job_details["other_dih_label"] = args.other_dih_label
 else:
     with open(
-        f"{job_details['self_contained_base']}/../train/{job_details['job_name']}/{job_details['condition']}/job_details.json",
+        f"{job_details['autobaddie_base']}/../train/{job_details['job_name']}/{job_details['condition']}/job_details.json",
         "r",
     ) as jsonFile:
         job_details = json.load(jsonFile)
@@ -118,7 +118,7 @@ logtext = ""
 # begin program
 print("beginning the program")
 print("job name:", job_details["job_name"])
-print("SELF_CONTAINED_BASE:", job_details["self_contained_base"])
+print("AUTOBADDIE_BASE:", job_details["autobaddie_base"])
 #             #-----------------------------------------------train and val-----------------------------------------------------------
 job_details, condition = train.assign_job_details(job_details)
 job_details.mode = "train"

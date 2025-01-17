@@ -2,7 +2,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy import stats
-from self_contained.utils.ADDITIONAL_HYPERPARAMS import (
+from autobaddie.utils.ADDITIONAL_HYPERPARAMS import (
     MIN_BOND_DIS,
     MAX_BOND_DIS,
     MIN_ANGLE_DIS,
@@ -405,17 +405,17 @@ def plot_param_evolution(job_details, condition, forcefield):
 
     # print('saving to:', f'{TRAIN_BASE}/{job_details.job_name}/{condition}/train/param_evolutions.jpg')
     if not os.path.exists(
-        f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/"
+        f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/"
     ):
         os.makedirs(
-            f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/"
+            f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/"
         )
         print(
             "created:",
-            f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/",
+            f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/",
         )
     plt.savefig(
-        f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/param_evolutions.jpg"
+        f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/param_evolutions.jpg"
     )
     plt.close()
 
@@ -483,16 +483,16 @@ def plot_param_evolution_cross(job_details, condition, forcefield):
 
     # print('saving to:', f'{TRAIN_BASE}/{job_details.job_name}/{condition}/train/param_evolutions.jpg')
     if not os.path.exists(
-        f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/"
+        f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/"
     ):
         os.makedirs(
-            f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/"
+            f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/"
         )
         print(
             "created:",
-            f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/",
+            f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/",
         )
     plt.savefig(
-        f"{job_details.self_contained_base}/../train/{job_details.job_name}/{condition}/train/param_evolutions_cross.jpg"
+        f"{job_details.autobaddie_base}/../train/{job_details.job_name}/{condition}/train/param_evolutions_cross.jpg"
     )
     plt.close()

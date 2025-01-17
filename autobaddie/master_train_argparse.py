@@ -7,9 +7,9 @@ import _pickle as pickle
 import pandas as pd
 import json
 import argparse
-import self_contained.utils.train as train
-import self_contained.utils.parameterize as parameterize
-import self_contained.utils.param_compare_utils as param_compare_utils
+import autobaddie.utils.train as train
+import autobaddie.utils.parameterize as parameterize
+import autobaddie.utils.param_compare_utils as param_compare_utils
 
 parser = argparse.ArgumentParser(description="Parse for AutoBADDIE training")
 parser.add_argument("--job_name", type=str, action="store", nargs="?")
@@ -28,18 +28,18 @@ parser.add_argument("--training_ff", type=str, action="store", nargs="?")
 parser.add_argument("--other_cond_for_dih", type=str, action="store", nargs="?")
 parser.add_argument("--dih_label", type=str, action="store", nargs="?")
 parser.add_argument("--other_dih_label", type=str, action="store", nargs="?")
-parser.add_argument("--self_contained_base", type=str, action="store", nargs="?")
+parser.add_argument("--autobaddie_base", type=str, action="store", nargs="?")
 parser.add_argument("--training_path", type=str, action="store", nargs="?")
 args = parser.parse_args()
 
 train_flag = args.train_flag
-SELF_CONTAINED_BASE = args.self_contained_base
+AUTOBADDIE_BASE = args.autobaddie_base
 job_name = args.job_name
 condition = args.condition
 print("condition:", condition)
 
 with open(
-    f"{SELF_CONTAINED_BASE}/../train/{job_name}/{condition}/job_details.json", "r"
+    f"{AUTOBADDIE_BASE}/../train/{job_name}/{condition}/job_details.json", "r"
 ) as jsonFile:
     job_details = json.load(jsonFile)
     try:

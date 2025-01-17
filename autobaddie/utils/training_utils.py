@@ -1,5 +1,5 @@
 import itertools
-from materialbuilder import (
+from autobaddie.materialbuilder import (
     graphbuilder,
     matbuilder,
 )
