@@ -16,15 +16,16 @@ from autobaddie.utils.constants import Z_TO_ELEMENT
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+
+"""
 
 # -------------------------these need to be set
-template_smiles = "COCCOCCOCCOCCOC.O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]"
-job_name = "autoBADDIE_example"
-# glyme4.TFSI.Li
-node_type = (
-    "one_hot_graph_distinct_r3"  # the nubmer after the r refers to neighbor depth
-)
-WORKDIR_BASE = "/home/pleon/projects/AutoBADDIE"
+WORKDIR_BASE = # path to AutoBADDIE directory (ending in [...]/AutoBADDIE)
+job_name = "autoBADDIE_example" # desired name for chemical system, ex. "autoBADDIE_example"
+node_type = "one_hot_graph_distinct_r3"  # the nubmer after the r refers to neighbor depth, ex "one_hot_graph_distinct_r3" or "one_hot_graph_distinct_r2"
+
+template_smiles = "COCCOCCOCCOCCOC.O=S(=O)([N-]S(=O)(=O)C(F)(F)F)C(F)(F)F.[Li+]"  # atomic environments to be learned in smiles format
 
 
 # ------------begin populating data
@@ -58,6 +59,7 @@ job_details.pair_cutoff = None
 job_details.WORKDIR = os.path.join(
     WORKDIR_BASE, "training_results", job_details.job_name, "template"
 )
+print(job_details.WORKDIR)
 if not os.path.exists(job_details.WORKDIR):
     os.makedirs(job_details.WORKDIR)
 
@@ -77,8 +79,6 @@ file = open(path, "w")
 file.write(Chem.MolToMolBlock(rdkit_mol))
 file.close()
 mol_path = os.path.join(job_details.WORKDIR, "template.mol")
-# pdb_path = os.path.join(job_details.WORKDIR, "template.pdb")
-# subprocess.call(["obabel", mol_path, "-O", pdb_path])
 
 # ----------------find atomic environments and multibody topology types
 for trans in job_details.transformations:  # "one_hot_graph_distinct_r2"
@@ -147,7 +147,7 @@ for n in range(len(z_t)):
 plt.grid(False)
 plt.axis("off")
 plt.savefig(os.path.join(job_details.WORKDIR, "atom_types_list.png"))
-plt.show()
+plt.close()
 
 fig = plt.figure(figsize=(50, 30))
 ax = fig.add_subplot(111)
@@ -180,5 +180,4 @@ plt.grid(False)
 plt.axis("off")
 print(job_details.WORKDIR)
 plt.savefig(os.path.join(job_details.WORKDIR, "atom_types.png"))
-
-plt.show()
+plt.close()

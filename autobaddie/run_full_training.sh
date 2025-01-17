@@ -1,14 +1,12 @@
 #!/bin/bash
 
-source ~/.bashrc
+WORKDIR_BASE = # path to AutoBADDIE directory (ending in [...]/AutoBADDIE)
+JOB_NAME='autoBADDIE_example' # desired name for chemical system, ex. "autoBADDIE_example"
+DATE='TEST'
 
-JOB_NAME='autoBADDIE_example'
-DATE='TESTTESTTEST'
-TRAINING_DATA_PATH='/home/pleon/projects/AutoBADDIE/training_data/class1'
-TRAIN_AUTOPATH='/home/pleon/projects/AutoBADDIE/training_results'
-AUTOBADDIE_BASE=/home/pleon/projects/AutoBADDIE/autobaddie
-
-
+TRAINING_DATA_PATH=${WORKDIR_BASE}/training_data/class1 # path to AutoBADDIE directory (ending in [...]/AutoBADDIE)
+TRAIN_AUTOPATH=${WORKDIR_BASE}/training_results  # path to [...]/AutoBADDIE/training_results directory
+AUTOBADDIE_BASE=${WORKDIR_BASE}/autobaddie # path to [...]/AutoBADDIE/autobaddie directory
 RAND=$RANDOM
 echo beginning $RAND
 

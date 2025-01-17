@@ -2,11 +2,16 @@ import os
 from munch import Munch
 import pandas as pd
 
-"""based on the images provided by the create_template.py file, assign LJ parameters for each atomic environment"""
+"""based on the images provided by the create_template.py file, assign LJ parameters for each atomic environment
+an example of the custom_parameter_dict format is provided for glyme.Li.TFSI system for the template smiles provided and an neighbor differentiation depth of 3
+"""
 
-WORKDIR_BASE = "/home/pleon/projects/AutoBADDIE"  # path to autobaddie home directory
-job_name = "autoBADDIE_example"
+WORKDIR_BASE = # path to AutoBADDIE directory (ending in [...]/AutoBADDIE)
+job_name = "autoBADDIE_example" # desired name for chemical system, ex. "autoBADDIE_example"
 job_details = Munch()
+
+custom_parameter_dict = {} #this should be populated with all the lennard jones parameters needed for the system described by template_smiles in create_template.py
+
 
 # glyme.Li.TFSI lennard jones parameters for OPLS parameterization
 # litfsi comes from this (Doherty 2017): https://pubs.acs.org/doi/10.1021/acs.jctc.7b00520
@@ -41,7 +46,7 @@ custom_parameter_dict = {
     "12": {"types": [12], "sigma": 3.550, "epsilon": 0.250, "charge": None},  # S, TFSI
 }
 
-# ---------------save these figures
+# ---------------save these parameters into the template.params csv for later use
 job_details.job_name = job_name
 
 job_details.WORKDIR = os.path.join(
