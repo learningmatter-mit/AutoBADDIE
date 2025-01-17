@@ -105,7 +105,7 @@ if train_flag:
         job_details["other_dih_label"] = args.other_dih_label
 else:
     with open(
-        f"{job_details['autobaddie_base']}/../train/{job_details['job_name']}/{job_details['condition']}/job_details.json",
+        f"{job_details['autobaddie_base']}/../training_results/{job_details['job_name']}/{job_details['condition']}/job_details.json",
         "r",
     ) as jsonFile:
         job_details = json.load(jsonFile)

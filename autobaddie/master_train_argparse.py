@@ -39,7 +39,8 @@ condition = args.condition
 print("condition:", condition)
 
 with open(
-    f"{AUTOBADDIE_BASE}/../train/{job_name}/{condition}/job_details.json", "r"
+    f"{AUTOBADDIE_BASE}/../training_results/{job_name}/{condition}/job_details.json",
+    "r",
 ) as jsonFile:
     job_details = json.load(jsonFile)
     try:
@@ -249,7 +250,7 @@ job_details.TEMPLATEDIR = os.path.join(
     os.path.abspath("."), job_details.job_name, "template"
 )
 path = os.path.join(job_details.TEMPLATEDIR, "template.py")
-template_dataset = torch.load(path)
+template_dataset = torch.load(path, weights_only=False)
 template_dataset = template_dataset.to(device)
 print("to param list:", job_details.to_param_list)
 for to_parameterize, param_name in job_details.to_param_list:
@@ -286,7 +287,7 @@ for to_parameterize, param_name in job_details.to_param_list:
     path = os.path.join(
         job_details.WORKDIR, condition, "forcefield_{}.py".format(condition)
     )
-    forcefield = torch.load(path)
+    forcefield = torch.load(path, weights_only=False)
     # forcefield.to_device(device)
     if "litstart" in job_details.date:
         forcefield.train(device, stop_flag=True)
