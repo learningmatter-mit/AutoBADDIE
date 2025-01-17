@@ -317,9 +317,9 @@ for to_parameterize, param_name in job_details.to_param_list:
         logtext,
     )
     print("param_name:", param_name, "to_parameterize:", to_parameterize)
-    parameterize.write_mol_and_pdb_files_for_single_dataset(
-        job_details, condition, param_name, rdkit_mol
-    )
+    # parameterize.write_mol_and_pdb_files_for_single_dataset(
+    #     job_details, condition, param_name, rdkit_mol
+    # )
     print("going to write data file")
     logtext = parameterize.write_lammps_data_files(
         param_name, job_details, condition, batch, forcefield, scaled_ff, logtext

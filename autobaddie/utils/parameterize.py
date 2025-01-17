@@ -109,20 +109,20 @@ def write_mol_and_pdb_files_for_single_dataset(
             str(job_details.rep),
             "{}.mol".format(mol_name),
         )
-        pdb_path = os.path.join(
-            job_details.WORKDIR,
-            condition,
-            str(job_details.rep),
-            "{}.pdb".format(mol_name),
-        )
+        # pdb_path = os.path.join(
+        #     job_details.WORKDIR,
+        #     condition,
+        #     str(job_details.rep),
+        #     "{}.pdb".format(mol_name),
+        # )
     else:
         mol_path = os.path.join(
             job_details.WORKDIR, condition, "{}.mol".format(mol_name)
         )
-        pdb_path = os.path.join(
-            job_details.WORKDIR, condition, "{}.pdb".format(mol_name)
-        )
-    subprocess.call(["obabel", mol_path, "-O", pdb_path])
+        # pdb_path = os.path.join(
+        #     job_details.WORKDIR, condition, "{}.pdb".format(mol_name)
+        # )
+    # subprocess.call(["obabel", mol_path, "-O", pdb_path])
 
 
 def get_atom_types_for_single_mol_from_template(

@@ -71,14 +71,14 @@ ensemble.Add(geometry)
 template_dataset.AddEnsemble(ensemble)
 template_dataset.Close()
 
-# write the template molecule as a mol file and a pdb file
+# write the template molecule as a mol file
 path = os.path.join(job_details.WORKDIR, "template.mol")
 file = open(path, "w")
 file.write(Chem.MolToMolBlock(rdkit_mol))
 file.close()
 mol_path = os.path.join(job_details.WORKDIR, "template.mol")
-pdb_path = os.path.join(job_details.WORKDIR, "template.pdb")
-subprocess.call(["obabel", mol_path, "-O", pdb_path])
+# pdb_path = os.path.join(job_details.WORKDIR, "template.pdb")
+# subprocess.call(["obabel", mol_path, "-O", pdb_path])
 
 # ----------------find atomic environments and multibody topology types
 for trans in job_details.transformations:  # "one_hot_graph_distinct_r2"
