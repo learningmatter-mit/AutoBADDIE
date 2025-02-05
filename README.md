@@ -25,6 +25,9 @@ To use the code, please follow along with the below tutorial. Please open and re
      - The user must input a "custom_parameter_dict" which houses the Lennard-Jones parameter for each atomic environment enumerated by the "template_smiles" in the create_template.py file above. After a successful run of this code, a csv file named "template.params" will be saved in the AutoBADDIE/training_results/_job\_name_/template directory. AutoBADDIE will use these Lennard-Jones parameters to optimize all other force field parameters.
   
 3. Use the run_full_training.sh to take the example training data and learn an AutoBADDIE potential!
+      - Update the following 3 variables: **WORKDIR_BASE**, **JOB_NAME**, **DATE**
       - The job_name must match the previous two examples. The date will be used as a general label to separate this particular optimization run from others for the same chemical system described by the "template_smiles". The training_data_path must contain all the atomic positions, forces, partial charges, and pose energies in a format as displayed in the examples provided (such as AutoBADDIE/training_data/class1).
-  
-        If this code is completed successfully, a lammps output for each chemistry escribed in the to_param_list will be saved in the AutoBADDIE/training_results/_job\_name_/date_EXTRA_TRAINING_DETAILS directory. Additional information about the training and test performance can be found within this document as well. 
+
+      Once these changes are made, execute the run_full_training.sh code.
+   
+      If this code is completed successfully, a lammps output for each chemistry escribed in the to_param_list will be saved in the AutoBADDIE/training_results/_job\_name_/date_{EXTRA_TRAINING_DETAILS} directory. Additional information about the training and test performance can be found within this document as well. 
